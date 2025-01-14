@@ -4,11 +4,11 @@ import matplotlib.pyplot as plt
 from scipy.signal import welch
 
 # Load the data (assuming tab-delimited file)
-file_path = 'moe_data/SRP.csv'  # Replace with your file path
+file_path = 'moe_data/SRP+Ground.csv'  # Replace with your file path
 data = pd.read_csv(file_path, delimiter="\t")
 
-# Select relevant numeric columns for analysis (assuming all except the first column are EEG signals)
-eeg_data = data.iloc[:, 1:]
+# Select relevant numeric columns for analysis 
+eeg_data = data.iloc[:, 2:6]
 
 # Split the data into two halves: Eyes Closed and Eyes Open
 half_point = len(eeg_data) // 2
@@ -35,11 +35,11 @@ psd_open = psd_open[focus_range]
 
 # Save the figure to a file
 offset = 20
-output_path = 'good_plots_moe/SRP_plot.png'  # Replace with your desired folder and file name
+output_path = 'good_plots_moe/SRP+Ground_plot.png'  # Replace with your desired folder and file name
 plt.figure(figsize=(10, 6))
 plt.plot(frequency_closed, 10 * np.log10(psd_closed) + offset, label='Eyes Closed', color='blue')
 plt.plot(frequency_closed, 10 * np.log10(psd_open) + offset, label='Eyes Open', color='orange')
-plt.title('PSD of Eyes Open & Closed (0-30 Hz) (SRP)')
+plt.title('PSD of Eyes Open & Closed (0-30 Hz) (SRP+Ground)')
 plt.xlabel('Frequency (Hz)')
 plt.ylabel('Power Spectral Density (dB)')
 plt.legend()
