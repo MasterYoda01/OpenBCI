@@ -8,7 +8,7 @@ file_path = 'moe_data/SRP+Ground.csv'  # Replace with your file path
 data = pd.read_csv(file_path, delimiter="\t")
 
 # Select relevant numeric columns for analysis 
-eeg_data = data.iloc[:, 2:6]
+eeg_data = data.iloc[:, 1:5]
 
 # Split the data into two halves: Eyes Closed and Eyes Open
 half_point = len(eeg_data) // 2
